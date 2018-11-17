@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg height='128' viewBox='0 0 128 128' width='128' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns="http://www.w3.org/2000/svg">
+  <style type="text/css">
+    <![CDATA[
+      rect#bg {
+        fill: rgba(255,255,0,0.2);
+        fill: mistyrose;
+      }
+      ellipse#fixture {
+        fill: rgba(255,255,255, 0.6);
+        stroke: black;
+        stroke-width: 1px;
+      }
+      g#edge {
+        fill: brown;
+      }
+      ellipse#light {
+        fill: none;
+        fill: url(#glow);
+      }
+      path {
+        stroke-linejoin: round;
+        stroke: black;
+        stroke-width: 2px;
+        fill: brown;
+      }
+      ellipse#nub {
+        stroke: black;
+        fill: brown;
+      }
+    ]]>
+  </style>
+  <defs> 
+    <radialGradient id='glow' cx='50%' cy='100%' r='100%'>
+      <stop offset='10%' stop-color='gold'/>
+      <stop offset='50%' stop-color='yellow' stop-opacity='0'/>
+    </radialGradient>
+    <mask id='mask'>
+      <rect x='0' y='0' width='128' height='128' fill='white'/>
+      <ellipse cx='64' cy='20' rx='96' ry='52' fill='black'/>
+    </mask>
+    <mask id='mask2'>
+      <rect x='0' y='0' width='128' height='128' fill='white'/>
+      <ellipse cx='64' cy='20' rx='86' ry='42' fill='black'/>
+    </mask>
+    <clipPath id='clip-edge'>
+      <ellipse cx='64' cy='0' rx='52' ry='96'/>
+    </clipPath>
+  </defs>
+  <rect id='bg' x='0' y='0' width='128' height='128'/>
+  <ellipse id='nub' cx='64' cy='85' rx='10' ry='15'/>
+  <ellipse fill='white' cx='64' cy='0' rx='52' ry='96' mask='url(#mask)'/>
+  <ellipse id='light' cx='64' cy='0' rx='52' ry='96'/>
+  <ellipse id='fixture' cx='64' cy='0' rx='52' ry='96' mask='url(#mask)'/>
+  <!--g transform='translate(64,64)'>
+    <g transform='scale(1.1)'>
+      <g transform='translate(-64,-64)'>
+        <g clip-path='url(#clip-edge)'>
+          <ellipse cx='64' cy='20' rx='96' ry='52' mask='url(#mask2)'/>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g clip-path='url(#clip-edge)'>
+    <ellipse cx='64' cy='20' rx='96' ry='52' mask='url(#mask2)' fill='red'/>
+  </g-->
+  <path d='M 26 70 a 96 52 0 0 0 76 0
+                   a 52 96 0 0 0 5 -15
+                   a 96 52 0 0 1 -86 0
+                   a 52 96 0 0 0 5 15z'/>
+</svg>
