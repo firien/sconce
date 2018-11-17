@@ -36,11 +36,36 @@ body {
   height: 16px;
 }
 
+#generate {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  appearance: none;
+  -webkit-appearance: none;
+  border-radius: 0.2em;
+  border: thin solid #555;
+  color: #333;
+  background-color: ivory;
+  font-size: 1rem;
+  cursor: pointer;
+}
+#generate:hover {
+  background-color: #333;
+  color: ivory;
+}
+#generate:disabled {
+  background-color: #777;
+  cursor: not-allowed;
+}
 @media (max-width:500px) {
   .flex {
     flex-wrap: wrap;
   }
   .flex > div {
     height: auto;
+  }
+  .flex > div:last-child {
+    border-top: thin solid #ccccc0;
+    border-left: none;
   }
 }

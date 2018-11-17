@@ -1,5 +1,5 @@
 (function() {
-  var $icondirentryBytes, $images, addImage, dropHandler, generateIco;
+  var $icondirentryBytes, $images, addImage, dropHandler, enableGenerateButton, fileSaver, generateIco;
 
   $images = [];
 
@@ -21,7 +21,10 @@
           png = UPNG.decode(buffer);
           if ((img.width === png.width) && (img.height === png.height)) {
             img.src = url;
-            return $images.push([png, buffer]);
+            $images.push([png, buffer]);
+            return enableGenerateButton();
+          } else {
+            return alert('Image does not match size');
           }
         } catch (error) {
           err = error;
@@ -32,47 +35,60 @@
     }
   };
 
-  generateIco = function(e) {
-    var anchor, buffer, buffers, dataView, i, icoFile, icondirBytes, image, imgBuffer, j, len, offset, png, size, url;
-    icondirBytes = 6;
-    // ICONDIR
-    size = icondirBytes + ($images.length * $icondirentryBytes);
-    buffer = new ArrayBuffer(size);
-    dataView = new DataView(buffer);
-    dataView.setUint16(0, 0);
-    dataView.setUint16(2, 1, true); // 1 for .ico
-    dataView.setUint16(4, 1, true); // number of images
-    offset = size;
-    buffers = [buffer];
-    for (i = j = 0, len = $images.length; j < len; i = ++j) {
-      image = $images[i];
-      png = image[0];
-      imgBuffer = image[1];
-      buffers.push(imgBuffer);
-      offset = addImage(dataView, png, imgBuffer, size, i);
-    }
-    // generate file
-    icoFile = new Blob(buffers, {
-      type: 'image/x-icon'
-    });
-    url = URL.createObjectURL(icoFile);
+  fileSaver = function(blob) {
+    var anchor, url;
+    url = URL.createObjectURL(blob);
     anchor = document.createElement('a');
     anchor.setAttribute('download', 'favicon.ico');
     anchor.href = url;
     return anchor.click();
   };
 
+  generateIco = function(e) {
+    var buffer, buffers, dataView, i, icoFile, icondirBytes, image, imgBuffer, j, len, offset, png, size;
+    if ($images.length > 0) {
+      icondirBytes = 6;
+      // ICONDIR
+      size = icondirBytes + ($images.length * $icondirentryBytes);
+      buffer = new ArrayBuffer(size);
+      dataView = new DataView(buffer);
+      dataView.setUint16(0, 0);
+      dataView.setUint16(2, 1, true); // 1 for .ico
+      dataView.setUint16(4, 1, true); // number of images
+      offset = size;
+      buffers = [buffer];
+      for (i = j = 0, len = $images.length; j < len; i = ++j) {
+        image = $images[i];
+        png = image[0];
+        imgBuffer = image[1];
+        buffers.push(imgBuffer);
+        offset = addImage(dataView, png, imgBuffer, size, i);
+      }
+      // generate file
+      icoFile = new Blob(buffers, {
+        type: 'image/x-icon'
+      });
+      return fileSaver(icoFile);
+    }
+  };
+
   addImage = function(dataView, png, imgBuffer, offset, i) {
+    var dirOffset;
+    dirOffset = i * $icondirentryBytes;
     //ICONDIRENTRY
-    dataView.setUint8(6 + (i * $icondirentryBytes), png.width); // width
-    dataView.setUint8(7 + (i * $icondirentryBytes), png.height); // width
-    dataView.setUint8(8 + (i * $icondirentryBytes), 0); // palette?
-    dataView.setUint8(9 + (i * $icondirentryBytes), 0);
-    dataView.setUint16(10 + (i * $icondirentryBytes), 1, true); // color planes
-    dataView.setUint16(12 + (i * $icondirentryBytes), png.depth * 4, true); // bits per channel(RBGA)
-    dataView.setUint32(14 + (i * $icondirentryBytes), imgBuffer.byteLength, true); // file size
-    dataView.setUint32(18 + (i * $icondirentryBytes), offset, true); // offset
+    dataView.setUint8(6 + dirOffset, png.width); // width
+    dataView.setUint8(7 + dirOffset, png.height); // width
+    dataView.setUint8(8 + dirOffset, 0); // palette?
+    dataView.setUint8(9 + dirOffset, 0);
+    dataView.setUint16(10 + dirOffset, 1, true); // color planes
+    dataView.setUint16(12 + dirOffset, png.depth * 4, true); // bits per channel (RBGA)
+    dataView.setUint32(14 + dirOffset, imgBuffer.byteLength, true); // file size
+    dataView.setUint32(18 + dirOffset, offset, true); // offset
     return offset + imgBuffer.byteLength;
+  };
+
+  enableGenerateButton = function() {
+    return document.querySelector('#generate').disabled = false;
   };
 
   document.addEventListener('DOMContentLoaded', function() {
