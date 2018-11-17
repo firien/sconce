@@ -10,7 +10,7 @@ task('build', 'Build application', (options) ->
   if not fs.existsSync(dirname)
     fs.mkdirSync(dirname)
   fs.writeFileSync(filename, html)
-  ['sconce'].forEach((filename) ->
+  ['sconce', 'service', 'pwa'].forEach((filename) ->
     cs = fs.readFileSync("#{filename}.coffee", 'utf8')
     js = coffee.compile cs
     fs.writeFileSync("docs/#{filename}.js", js)

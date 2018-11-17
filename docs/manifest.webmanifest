@@ -1,0 +1,21 @@
+{
+  "name": "Sconce",
+  "short_name": "Sconce",
+  "start_url": "/sconce/",
+  "display": "standalone",
+  "background_color": "#fffff0",
+  "description": "ICO Generator",
+  "theme_color": "#fffff0",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
