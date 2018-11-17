@@ -1,0 +1,48 @@
+doctype html
+html(lang="en")
+  head
+    title Sconce
+    meta(charset="UTF-8")
+    meta(name="Description" content="ICO Generator")
+    meta(name="theme-color" content="#fffff0")
+    meta(name="apple-mobile-web-app-capable" content="yes")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    // scripts
+    script(src='bundle.js')
+    script(src='sconce.js')
+    // css
+    link(rel='stylesheet' href='index.css')
+    // icons
+    link(rel="icon" href="favicon.ico" type="image/x-icon")
+    link(rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad.png")
+    link(rel="apple-touch-icon" sizes="180x180" href="touch-icon-iphone-retina.png")
+    link(rel="apple-touch-icon" sizes="167x167" href="touch-icon-ipad-retina.png")
+    // pwa
+    link(rel="manifest", href="manifest.webmanifest")
+  body
+    div.flex
+      div
+        h1 Sconce
+        p Drag PNG images to placeholders.
+        figure
+          img#sixty-four.placeholder
+          figcaption 64
+        figure
+          img#thirty-two.placeholder
+          figcaption 32
+        figure
+          img#sixteen.placeholder
+          figcaption 16
+        button#generate(type='button') Generate .ico
+      div
+        // h3 Details
+        :markdown-it
+          There is no lack of PNG -> ICO converters on the interwebs. This was more of a challenge to myself, and an homage to [Apple's Icon Composer](https://en.wikipedia.org/wiki/Apple_Developer_Tools#Icon_Composer)
+          #### ICO
+          For PNG based ICOs the [format](https://en.wikipedia.org/wiki/ICO_%28file_format%29#Outline) is fairly simple.
+          * 6 Byte Header (ICONDIR)
+          * Followed by a 16 Byte Image Descriptor (ICONDIRENTRY) for *each* image
+          * Then each image's full binary data is appended
+          #### Sconce
+          This is an installable web app. It can be used offline, and does not communicate with any servers. Everything is done in your browser. Source code is available on [GitHub](https://github.com/firien/sconce)
+

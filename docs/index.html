@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Sconce</title>
+    <meta charset="UTF-8">
+    <meta name="Description" content="ICO Generator">
+    <meta name="theme-color" content="#fffff0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- scripts-->
+    <script src="bundle.js"></script>
+    <script src="sconce.js"></script>
+    <!-- css-->
+    <link rel="stylesheet" href="index.css">
+    <!-- icons-->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="touch-icon-iphone-retina.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="touch-icon-ipad-retina.png">
+    <!-- pwa-->
+    <link rel="manifest" href="manifest.webmanifest">
+  </head>
+  <body>
+    <div class="flex">
+      <div>
+        <h1>Sconce</h1>
+        <p>Drag PNG images to placeholders.</p>
+        <figure><img class="placeholder" id="sixty-four">
+          <figcaption>64</figcaption>
+        </figure>
+        <figure><img class="placeholder" id="thirty-two">
+          <figcaption>32</figcaption>
+        </figure>
+        <figure><img class="placeholder" id="sixteen">
+          <figcaption>16</figcaption>
+        </figure>
+        <button id="generate" type="button">Generate .ico</button>
+      </div>
+      <div>
+        <!-- h3 Details--><p>There is no lack of PNG -&gt; ICO converters on the interwebs. This was more of a challenge to myself, and an homage to <a href="https://en.wikipedia.org/wiki/Apple_Developer_Tools#Icon_Composer">Apple's Icon Composer</a></p>
+<h4>ICO</h4>
+<p>For PNG based ICOs the <a href="https://en.wikipedia.org/wiki/ICO_%28file_format%29#Outline">format</a> is fairly simple.</p>
+<ul>
+<li>6 Byte Header (ICONDIR)</li>
+<li>Followed by a 16 Byte Image Descriptor (ICONDIRENTRY) for <em>each</em> image</li>
+<li>Then each image's full binary data is appended</li>
+</ul>
+<h4>Sconce</h4>
+<p>This is an installable web app. It can be used offline, and does not communicate with any servers. Everything is done in your browser. Source code is available on <a href="https://github.com/firien/sconce">GitHub</a></p>
+
+      </div>
+    </div>
+  </body>
+</html>

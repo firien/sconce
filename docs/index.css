@@ -1,0 +1,46 @@
+body {
+  font-family: -apple-system, Helvetica;
+  margin: 0;
+}
+.flex {
+  display: flex;
+}
+.flex > div {
+  padding: 1em;
+  flex: 1 0 50%;
+  box-sizing: border-box;
+  height: 100vh;
+}
+.flex > div:last-child {
+  background-color: #fffff0;
+  border-left: thin solid #ccccc0
+}
+.placeholder {
+  border: thin solid black;
+}
+.placeholder:not([src]) {
+  background-color: rgb(200,200,200);
+}
+#sixty-four {
+  width: 64px;
+  height: 64px;
+}
+
+#thirty-two {
+  width: 32px;
+  height: 32px;
+}
+
+#sixteen {
+  width: 16px;
+  height: 16px;
+}
+
+@media (max-width:500px) {
+  .flex {
+    flex-wrap: wrap;
+  }
+  .flex > div {
+    height: auto;
+  }
+}
