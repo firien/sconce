@@ -7,7 +7,7 @@
 
   $cacheName = `${$prefix}-${tag}`;
 
-  $urls = ['/sconce/favicon.png', '/sconce/icon-192.png', '/sconce/icon-512.png', '/sconce/touch-icon-ipad.png', '/sconce/touch-icon-ipad-retina.png', '/sconce/touch-icon-iphone-retina.png', '/sconce/index.css', '/sconce/pwa.js', '/sconce/sconce.js', '/sconce/bundle.js', '/sconce/index.html', '/sconce/'];
+  $urls = ['/sconce/icon-192.png', '/sconce/icon-512.png', '/sconce/touch-icon-ipad.png', '/sconce/touch-icon-ipad-retina.png', '/sconce/touch-icon-iphone-retina.png', '/sconce/index.css', '/sconce/pwa.js', '/sconce/sconce.js', '/sconce/bundle.js', '/sconce/index.html', '/sconce/'];
 
   self.addEventListener('install', function(event) {
     return event.waitUntil(caches.open($cacheName).then(function(cache) {

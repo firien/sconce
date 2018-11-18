@@ -3,7 +3,6 @@ $prefix = 'SCONCE'
 $cacheName = "#{$prefix}-#{tag}"
 
 $urls = [
-  '/sconce/favicon.png'
   '/sconce/icon-192.png'
   '/sconce/icon-512.png'
   '/sconce/touch-icon-ipad.png'
