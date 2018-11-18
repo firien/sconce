@@ -28,6 +28,7 @@ task('serve', 'serve', (options) ->
 
   http = require 'http'
   url = require 'url'
+  mime = require 'mime'
   http.createServer((request, response) ->
     uri = url.parse(request.url).pathname
     filePath = path.join(process.cwd(), 'docs', uri)
@@ -38,16 +39,7 @@ task('serve', 'serve', (options) ->
 
       stat = fs.statSync(filePath)
       ext = path.extname(filePath)
-      if /html/.test ext
-        contentType = 'text/html'
-      else if /png/.test ext
-        contentType = 'image/png'
-      else if /css/.test ext
-        contentType = 'text/css'
-      else if /js/.test ext
-        contentType = 'application/javascript'
-      else if /manifest/.test ext
-        contentType = 'application/manifest+json'
+      contentType = mime.getType(ext)
       response.writeHead(200, {
         'Content-Type': contentType,
         'Content-Length': stat.size
