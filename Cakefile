@@ -30,37 +30,33 @@ task('serve', 'serve', (options) ->
   url = require 'url'
   http.createServer((request, response) ->
     uri = url.parse(request.url).pathname
-    filename = path.join(process.cwd(), 'docs', uri)
+    filePath = path.join(process.cwd(), 'docs', uri)
 
-    if fs.existsSync(filename)
-      if fs.statSync(filename).isDirectory()
-        filename += '/index.html'
+    if fs.existsSync(filePath)
+      if fs.statSync(filePath).isDirectory()
+        filePath += '/index.html'
 
-      fs.readFile(filename, "utf8", (err, file) ->
-        if err
-          response.writeHead(500, "Content-Type": "text/plain")
-          response.write(err + "\n")
-          response.end()
-          return
+      stat = fs.statSync(filePath)
+      ext = path.extname(filePath)
+      if /html/.test ext
+        contentType = 'text/html'
+      else if /png/.test ext
+        contentType = 'image/png'
+      else if /css/.test ext
+        contentType = 'text/css'
+      else if /js/.test ext
+        contentType = 'application/javascript'
+      else if /manifest/.test ext
+        contentType = 'application/manifest+json'
+      response.writeHead(200, {
+        'Content-Type': contentType,
+        'Content-Length': stat.size
+      })
 
-        ext = path.extname(filename)
-        if /html/.test ext
-          contentType = 'text/html'
-        else if /png/.test ext
-          contentType = 'image/png'
-        else if /css/.test ext
-          contentType = 'text/css'
-        else if /js/.test ext
-          contentType = 'application/javascript'
-        else if /manifest/.test ext
-          contentType = 'application/manifest+json'
-
-        response.writeHead(200, "Content-Type": "#{contentType}; charset=utf-8")
-        response.write(file, "utf8")
-        response.end()
-      )
+      readStream = fs.createReadStream(filePath)
+      readStream.pipe(response)
     else
-      response.writeHead(404, "Content-Type": "text/plain")
+      response.writeHead(404, 'Content-Type": "text/plain')
       response.write("404 Not Found\n")
       response.end()
       return

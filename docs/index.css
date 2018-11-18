@@ -9,7 +9,7 @@ body {
   padding: 1em;
   flex: 1 0 50%;
   box-sizing: border-box;
-  height: 100vh;
+  min-height: 100vh;
 }
 .flex > div:last-child {
   background-color: #fffff0;
@@ -63,6 +63,7 @@ body {
   }
   .flex > div {
     height: auto;
+    min-height: unset;
   }
   .flex > div:last-child {
     border-top: thin solid #ccccc0;
