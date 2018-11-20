@@ -48,7 +48,7 @@ task('serve', 'serve', (options) ->
       readStream = fs.createReadStream(filePath)
       readStream.pipe(response)
     else
-      response.writeHead(404, 'Content-Type": "text/plain')
+      response.writeHead(404, 'Content-Type': 'text/plain')
       response.write("404 Not Found\n")
       response.end()
       return
