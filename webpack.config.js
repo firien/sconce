@@ -1,4 +1,13 @@
 const path = require('path');
+const PWAPlugin = require('pwa');
+
+app = new PWAPlugin({
+  name: 'Sconce',
+  scope: 'sconce',
+  description: "ICO Generator",
+  theme: '#fffff0',
+  tag: 2
+})
 
 module.exports = [
   {
@@ -7,8 +16,13 @@ module.exports = [
     // target: 'web', // by default
     output: {
       path: path.resolve(__dirname, 'docs'),
-      filename: 'bundle.js',
+      filename: 'bundle.[contenthash].js',
     },
-    mode: 'production'
+    mode: 'development',
+    devServer: {
+      contentBase: path.join(__dirname, 'docs'),
+      port: 3012
+    },
+    plugins: [app]
   }
 ];

@@ -1,0 +1,92 @@
+body {
+  font-family: -apple-system, Helvetica;
+  margin: 0;
+}
+.flex {
+  display: flex;
+}
+.flex > div {
+  padding: 1em;
+  flex: 1 0 50%;
+  box-sizing: border-box;
+  min-height: 100vh;
+}
+.flex > div:last-child {
+  background-color: #fffff0;
+  border-left: thin solid #ccccc0
+}
+.placeholder {
+  border: thin solid black;
+}
+.placeholder:not([src]) {
+  background-color: rgb(200,200,200);
+}
+#sixty-four {
+  width: 64px;
+  height: 64px;
+}
+
+#thirty-two {
+  width: 32px;
+  height: 32px;
+}
+
+#sixteen {
+  width: 16px;
+  height: 16px;
+}
+
+#generate {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  appearance: none;
+  -webkit-appearance: none;
+  border-radius: 0.2em;
+  border: thin solid #555;
+  color: #333;
+  background-color: ivory;
+  font-size: 1rem;
+  cursor: pointer;
+}
+#generate:hover {
+  background-color: #333;
+  color: ivory;
+}
+#generate:disabled {
+  background-color: #777;
+  cursor: not-allowed;
+}
+@media (max-width:500px) {
+  .flex {
+    flex-wrap: wrap;
+  }
+  .flex > div {
+    height: auto;
+    min-height: unset;
+  }
+  .flex > div:last-child {
+    border-top: thin solid #ccccc0;
+    border-left: none;
+  }
+}
+
+button#installer {
+  background: url(touch-icon-ipad.png) left no-repeat;
+  font-family: -apple-system;
+  position: absolute;
+  background-color: navy;
+  top: 0;
+  right: 0;
+  margin: 1em;
+  border: thin solid white;
+  border-radius: 0.2em;
+  color: #fffff0;
+  font-size: 1.5em;
+  line-height: 1.5em;
+  height: 2em;
+  background-size: 2em 2em;
+  padding-left: 2.5em;
+  padding-right: 0.5em;
+  cursor: pointer;
+}

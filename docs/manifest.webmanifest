@@ -1,21 +1,35 @@
 {
-  "name": "Sconce",
-  "short_name": "Sconce",
-  "start_url": "/sconce/",
-  "display": "standalone",
-  "background_color": "#fffff0",
-  "description": "ICO Generator",
-  "theme_color": "#fffff0",
-  "icons": [
-    {
-      "src": "icon-192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "icon-512.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    }
-  ]
+    "name": "Sconce",
+    "short_name": "Sconce",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#fffff0",
+    "description": "ICO Generator",
+    "icons": [
+        {
+            "src": "images/icon-152.16a460569578cca83edb.png",
+            "type": "image/png",
+            "sizes": "152x152"
+        },
+        {
+            "src": "images/icon-167.e8c0e1abca38bc2ee6c6.png",
+            "type": "image/png",
+            "sizes": "167x167"
+        },
+        {
+            "src": "images/icon-180.678f79f1f40ac2f40ba1.png",
+            "type": "image/png",
+            "sizes": "180x180"
+        },
+        {
+            "src": "images/icon-192.c30f2a2017130f98365a.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "images/icon-512.7bc7986d2ed3d788782a.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ]
 }

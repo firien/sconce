@@ -1,23 +1,22 @@
 doctype html
 html(lang="en")
   head
-    title Sconce
+    title=name()
     meta(charset="UTF-8")
-    meta(name="Description" content="ICO Generator")
-    meta(name="theme-color" content="#fffff0")
+    meta(name="Description" content=desc())
+    meta(name="theme-color" content=theme())
     meta(name="apple-mobile-web-app-capable" content="yes")
     meta(name="viewport" content="width=device-width, initial-scale=1")
     // scripts
-    script(src='bundle.js')
-    script(src='pwa.js')
-    script(src='sconce.js')
+    script(src=assetPath('bundle.js'))
+    script(src=assetPath('pwa.js'))
+    script(src=assetPath('sconce.js'))
     // css
-    link(rel='stylesheet' href='index.css')
+    link(rel='stylesheet' href=assetPath('index.css'))
     // icons
     link(rel="icon" href="favicon.ico" type="image/x-icon")
-    link(rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad.png")
-    link(rel="apple-touch-icon" sizes="180x180" href="touch-icon-iphone-retina.png")
-    link(rel="apple-touch-icon" sizes="167x167" href="touch-icon-ipad-retina.png")
+    each icon in iconLinks()
+      link(rel=icon.rel sizes=icon.sizes href=icon.href)
     // pwa
     link(rel="manifest", href="manifest.webmanifest")
   body
