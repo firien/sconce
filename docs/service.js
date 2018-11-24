@@ -7,7 +7,7 @@
 
   $cacheName = `${$prefix}-${tag}`;
 
-  $urls = ['bundle.7abf80822528893a6122.js', 'javascripts/sconce.c98af1221d82294f1c65.js', 'stylesheets/index.2c21db9c4b5d59c0801b.css', 'images/icon-152.16a460569578cca83edb.png', 'images/icon-167.e8c0e1abca38bc2ee6c6.png', 'images/icon-180.678f79f1f40ac2f40ba1.png', 'images/icon-192.c30f2a2017130f98365a.png', 'images/icon-512.7bc7986d2ed3d788782a.png', 'pwa.40e7f83f095c9527ba5d.js', 'manifest.webmanifest', 'index.html'];
+  $urls = ['/sconce/bundle.7abf80822528893a6122.js', '/sconce/javascripts/sconce.c98af1221d82294f1c65.js', '/sconce/stylesheets/index.2c21db9c4b5d59c0801b.css', '/sconce/images/icon-152.16a460569578cca83edb.png', '/sconce/images/icon-167.e8c0e1abca38bc2ee6c6.png', '/sconce/images/icon-180.678f79f1f40ac2f40ba1.png', '/sconce/images/icon-192.c30f2a2017130f98365a.png', '/sconce/images/icon-512.7bc7986d2ed3d788782a.png', '/sconce/pwa.40e7f83f095c9527ba5d.js', '/sconce/manifest.webmanifest', '/sconce/index.html', '/sconce/'];
 
   self.addEventListener('install', function(event) {
     return event.waitUntil(caches.open($cacheName).then(function(cache) {
