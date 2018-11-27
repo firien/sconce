@@ -16,14 +16,14 @@ const app = new PWAPlugin({
   scope: 'sconce',
   description: "ICO Generator",
   theme: '#fffff0',
-  tag: 3,
+  tag: 4,
   mode: mode()
 })
 
 module.exports = [
   {
     name: 'client',
-    entry: './main.js',
+    entry: './bundle.js',
     // target: 'web', // by default
     output: {
       path: path.resolve(__dirname, 'docs'),

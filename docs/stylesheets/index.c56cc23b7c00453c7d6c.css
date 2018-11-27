@@ -72,8 +72,8 @@ body {
 }
 
 button#installer {
-  background: url(touch-icon-ipad.png) left no-repeat;
-  font-family: -apple-system;
+  background: url(../images/icon-180.678f79f1f40ac2f40ba1.png) left no-repeat;
+  font-family: -apple-system, Helvetica;
   position: absolute;
   background-color: navy;
   top: 0;
