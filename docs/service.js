@@ -1,7 +1,7 @@
 (function() {
   var $cacheName, $prefix, $urls, clearPreviousCaches, tag;
 
-  tag = '4';
+  tag = '5';
 
   $prefix = 'SCONCE';
 
@@ -26,7 +26,7 @@
   };
 
   self.addEventListener('activate', function(event) {
-    return event.waitUntil(clearPreviousCaches);
+    return event.waitUntil(clearPreviousCaches());
   });
 
   self.addEventListener('fetch', function(event) {
