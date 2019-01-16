@@ -5,14 +5,14 @@
     "coffeescript": "^2.3.2",
     "gh-pwa": "github:firien/gh-pwa",
     "jstransformer-markdown-it": "^2.1.0",
-    "mime": "^2.3.1",
+    "mime": "^2.4.0",
     "pug": "^2.0.3",
     "upng-js": "^2.1.0",
     "watch": "^1.0.2",
-    "webpack": "^4.26.1"
+    "webpack": "^4.28.4"
   },
   "devDependencies": {
-    "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10"
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14"
   }
 }
