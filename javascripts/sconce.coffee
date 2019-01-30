@@ -15,7 +15,8 @@ dropHandler = (e) ->
         png = UPNG.decode(buffer)
         if (img.width == png.width) && (img.height == png.height)
           img.src = url
-          $images.push([png, buffer])
+          index = $images.push([png, buffer])
+          img.setAttribute('data-index', index-1)
           enableGenerateButton()
         else
           alert 'Image does not match size'
@@ -31,20 +32,22 @@ fileSaver = (blob) ->
   anchor.click()
 
 generateIco = (e) ->
-  if $images.length > 0
+  indices = Array::slice.call(document.querySelectorAll('figure img[data-index]')).map((img) ->
+    Number(img.getAttribute('data-index'))
+  )
+  if indices.length > 0
     icondirBytes = 6
     # ICONDIR
-    size = icondirBytes + ($images.length * $icondirentryBytes)
+    size = icondirBytes + (indices.length * $icondirentryBytes)
     buffer = new ArrayBuffer(size)
     dataView = new DataView(buffer)
     dataView.setUint16(0, 0)
     dataView.setUint16(2, 1, true)# 1 for .ico
-    dataView.setUint16(4, 1, true)# number of images
+    dataView.setUint16(4, indices.length, true)# number of images
     offset = size
     buffers = [buffer]
-    for image, i in $images
-      png = image[0]
-      imgBuffer = image[1]
+    for i in indices
+      [png, imgBuffer] = $images[i]
       buffers.push imgBuffer
       offset = addImage(dataView, png, imgBuffer, size, i)
     # generate file

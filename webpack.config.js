@@ -16,7 +16,7 @@ const app = new PWAPlugin({
   scope: 'sconce',
   description: "ICO Generator",
   theme: '#fffff0',
-  tag: 5,
+  tag: 6,
   mode: mode()
 })
 
@@ -30,7 +30,7 @@ module.exports = [
       filename: 'bundle.[contenthash].js',
     },
     mode: mode(),
-    watch: true,
+    // watch: true,
     devServer: {
       contentBase: path.join(__dirname, 'docs'),
       port: 3012

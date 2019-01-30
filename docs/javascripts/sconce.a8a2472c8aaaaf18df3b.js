@@ -15,13 +15,14 @@
       url = URL.createObjectURL(file);
       fileReader = new FileReader();
       fileReader.onloadend = function(e) {
-        var buffer, err, png;
+        var buffer, err, index, png;
         buffer = e.target.result;
         try {
           png = UPNG.decode(buffer);
           if ((img.width === png.width) && (img.height === png.height)) {
             img.src = url;
-            $images.push([png, buffer]);
+            index = $images.push([png, buffer]);
+            img.setAttribute('data-index', index - 1);
             return enableGenerateButton();
           } else {
             return alert('Image does not match size');
@@ -45,22 +46,24 @@
   };
 
   generateIco = function(e) {
-    var buffer, buffers, dataView, i, icoFile, icondirBytes, image, imgBuffer, j, len, offset, png, size;
-    if ($images.length > 0) {
+    var buffer, buffers, dataView, i, icoFile, icondirBytes, imgBuffer, indices, j, len, offset, png, size;
+    indices = Array.prototype.slice.call(document.querySelectorAll('figure img[data-index]')).map(function(img) {
+      return Number(img.getAttribute('data-index'));
+    });
+    if (indices.length > 0) {
       icondirBytes = 6;
       // ICONDIR
-      size = icondirBytes + ($images.length * $icondirentryBytes);
+      size = icondirBytes + (indices.length * $icondirentryBytes);
       buffer = new ArrayBuffer(size);
       dataView = new DataView(buffer);
       dataView.setUint16(0, 0);
       dataView.setUint16(2, 1, true); // 1 for .ico
-      dataView.setUint16(4, 1, true); // number of images
+      dataView.setUint16(4, indices.length, true); // number of images
       offset = size;
       buffers = [buffer];
-      for (i = j = 0, len = $images.length; j < len; i = ++j) {
-        image = $images[i];
-        png = image[0];
-        imgBuffer = image[1];
+      for (j = 0, len = indices.length; j < len; j++) {
+        i = indices[j];
+        [png, imgBuffer] = $images[i];
         buffers.push(imgBuffer);
         offset = addImage(dataView, png, imgBuffer, size, i);
       }
