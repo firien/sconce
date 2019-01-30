@@ -16,7 +16,7 @@ const app = new PWAPlugin({
   scope: 'sconce',
   description: "ICO Generator",
   theme: '#fffff0',
-  tag: 6,
+  tag: 7,
   mode: mode()
 })
 

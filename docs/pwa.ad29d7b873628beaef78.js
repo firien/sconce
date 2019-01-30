@@ -1,7 +1,7 @@
 (function() {
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sconce/service.js', {
-      scope: '/sconce/'
+    navigator.serviceWorker.register('/service.js', {
+      scope: '/'
     }).then(function(registration) {
       var refreshPage;
       refreshPage = function(worker) {
