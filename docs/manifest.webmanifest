@@ -3,7 +3,8 @@
     "short_name": "Sconce",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#fffff0",
+    "background_color": "#555555",
+    "theme": "#fffff0",
     "description": "ICO Generator",
     "icons": [
         {

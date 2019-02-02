@@ -15,11 +15,22 @@ body {
   background-color: #fffff0;
   border-left: thin solid #ccccc0
 }
-.placeholder {
-  border: thin solid black;
+.drop-active {
+  outline-style: auto;
+  outline-color: lightblue;
+  outline-color: -webkit-focus-ring-color;
+}
+.placeholder[src] {
+  border: thin solid #B5B5B5;
 }
 .placeholder:not([src]) {
-  background-color: rgb(200,200,200);
+  /*
+  img without src are not valid
+  and have a weird internal border
+  use a white border to blend in with background
+  */
+  border: thin solid white;
+  background-color: #E3E3E3;
 }
 #sixty-four {
   width: 64px;

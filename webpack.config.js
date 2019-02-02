@@ -15,8 +15,9 @@ const app = new PWAPlugin({
   name: 'Sconce',
   scope: 'sconce',
   description: "ICO Generator",
+  background_color: '#555555',
   theme: '#fffff0',
-  tag: 7,
+  tag: 8,
   mode: mode()
 })
 

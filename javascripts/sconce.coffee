@@ -1,27 +1,28 @@
 $images = []
 $icondirentryBytes = 16
 
-dropHandler = (e) ->
-  img = this
+dropHandler = (e, img, size) ->
   if e.dataTransfer.files?.length == 1
     file = e.dataTransfer.files[0]
     e.stopPropagation()
     e.preventDefault()
-    url = URL.createObjectURL(file)
     fileReader = new FileReader()
     fileReader.onloadend = (e) ->
       buffer = e.target.result
       try
         png = UPNG.decode(buffer)
-        if (img.width == png.width) && (img.height == png.height)
-          img.src = url
+        if (size == png.width) && (size == png.height)
+          img.src = URL.createObjectURL(file)
           index = $images.push([png, buffer])
           img.setAttribute('data-index', index-1)
           enableGenerateButton()
         else
           alert 'Image does not match size'
       catch err
-        console.warn err
+        alert err
+      finally
+        img.classList.remove('drop-active')
+      return#prevent odd returns in try block
     fileReader.readAsArrayBuffer(file)
 
 fileSaver = (blob) ->
@@ -32,6 +33,9 @@ fileSaver = (blob) ->
   anchor.click()
 
 generateIco = (e) ->
+  # get indices for images
+  # because a user can drop multiple images over top one another
+  # it is not always every img in $images
   indices = Array::slice.call(document.querySelectorAll('figure img[data-index]')).map((img) ->
     Number(img.getAttribute('data-index'))
   )
@@ -71,10 +75,19 @@ enableGenerateButton = ->
   document.querySelector('#generate').disabled = false
 
 document.addEventListener('DOMContentLoaded', ->
-  imgs = Array::slice.call(document.querySelectorAll('figure img'))
+  imgs = Array::slice.call(document.querySelectorAll('figure img[data-size]'))
   imgs.forEach((img) ->
-    img.addEventListener('drop', dropHandler)
+    # read in size on page load, so DOM modification does not effect code
+    size = Number(img.getAttribute('data-size'))
+    img.addEventListener('drop', (e) ->
+      dropHandler(e, img, size)
+    )
+    img.addEventListener('dragleave', (e) ->
+      this.classList.remove('drop-active')
+    )
     img.addEventListener('dragover', (e) ->
+      e.dataTransfer.dropEffect = 'copy'
+      this.classList.add('drop-active')
       e.preventDefault()
     )
   )
