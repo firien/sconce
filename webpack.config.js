@@ -17,7 +17,7 @@ const app = new PWAPlugin({
   description: "ICO Generator",
   background_color: '#555555',
   theme: '#fffff0',
-  tag: 8,
+  tag: 9,
   mode: mode()
 })
 

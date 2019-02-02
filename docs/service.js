@@ -1,7 +1,7 @@
 (function() {
   var $cacheName, $prefix, $urls, clearPreviousCaches, tag;
 
-  tag = '8';
+  tag = '9';
 
   $prefix = 'SCONCE';
 

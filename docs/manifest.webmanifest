@@ -4,7 +4,7 @@
     "start_url": ".",
     "display": "standalone",
     "background_color": "#555555",
-    "theme": "#fffff0",
+    "theme_color": "#fffff0",
     "description": "ICO Generator",
     "icons": [
         {
