@@ -1,13 +1,13 @@
 (function() {
   var $cacheName, $prefix, $urls, clearPreviousCaches, tag;
 
-  tag = '9';
+  tag = '10';
 
   $prefix = 'SCONCE';
 
   $cacheName = `${$prefix}-${tag}`;
 
-  $urls = ['/sconce/bundle.3af26372e064b4fdc89a.js', '/sconce/javascripts/sconce.30dd45b734b623511cb4.js', '/sconce/stylesheets/index.59bdaf601b4478f5b26f.css', '/sconce/images/icon-152.16a460569578cca83edb.png', '/sconce/images/icon-167.e8c0e1abca38bc2ee6c6.png', '/sconce/images/icon-180.678f79f1f40ac2f40ba1.png', '/sconce/images/icon-192.c30f2a2017130f98365a.png', '/sconce/images/icon-512.7bc7986d2ed3d788782a.png', '/sconce/pwa.40e7f83f095c9527ba5d.js', '/sconce/manifest.webmanifest', '/sconce/index.html', '/sconce/'];
+  $urls = ['/sconce/bundle.3af26372e064b4fdc89a.js', '/sconce/javascripts/sconce.30dd45b734b623511cb4.js', '/sconce/stylesheets/index.fb0cad18a722a1b252b5.css', '/sconce/images/icon-152.16a460569578cca83edb.png', '/sconce/images/icon-167.e8c0e1abca38bc2ee6c6.png', '/sconce/images/icon-180.678f79f1f40ac2f40ba1.png', '/sconce/images/icon-192.c30f2a2017130f98365a.png', '/sconce/images/icon-512.7bc7986d2ed3d788782a.png', '/sconce/pwa.40e7f83f095c9527ba5d.js', '/sconce/manifest.webmanifest', '/sconce/index.html', '/sconce/'];
 
   self.addEventListener('install', function(event) {
     return event.waitUntil(caches.open($cacheName).then(function(cache) {

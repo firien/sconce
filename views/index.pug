@@ -4,7 +4,7 @@ html(lang="en")
     title=name()
     meta(charset="UTF-8")
     meta(name="Description" content=desc())
-    meta(name="theme-color" content=theme())
+    meta(name="theme-color" content=themeColor())
     meta(name="apple-mobile-web-app-capable" content="yes")
     meta(name="viewport" content="width=device-width, initial-scale=1")
     // scripts
@@ -14,7 +14,7 @@ html(lang="en")
     // css
     link(rel='stylesheet' href=assetPath('index.css'))
     // icons
-    link(rel="icon" href="favicon.ico" type="image/x-icon")
+    link(rel="icon" href="favicon.ico?sconce" type="image/x-icon")
     each icon in iconLinks()
       link(rel=icon.rel sizes=icon.sizes href=icon.href)
     // pwa
@@ -22,6 +22,8 @@ html(lang="en")
   body
     div.flex
       div
+        noscript
+          p Requires javascript
         h1 Sconce
         p Drag PNG images to placeholders.
         figure
