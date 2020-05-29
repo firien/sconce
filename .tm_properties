@@ -1,1 +1,0 @@
-excludeDirectories = "{$excludeDirectories,node_modules}"
