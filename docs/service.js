@@ -1,32 +1,32 @@
-const tag = '11';
+const tag = '12';
 const $prefix = 'SCONCE';
 const $cacheName = `${$prefix}-${tag}`;
 
 const $urls = [
   
-  'bundle.1adc7297d4b2947102c3.js',
+  '/sconce/bundle.bfacffd8529898c89cff.js',
   
-  'javascripts/sconce.efbb980e2fa3900f422a.js',
+  '/sconce/javascripts/sconce.efbb980e2fa3900f422a.js',
   
-  'stylesheets/index.fb0cad18a722a1b252b5.css',
+  '/sconce/stylesheets/index.fb0cad18a722a1b252b5.css',
   
-  'images/icon-152.16a460569578cca83edb.png',
+  '/sconce/images/icon-152.16a460569578cca83edb.png',
   
-  'images/icon-167.e8c0e1abca38bc2ee6c6.png',
+  '/sconce/images/icon-167.e8c0e1abca38bc2ee6c6.png',
   
-  'images/icon-180.678f79f1f40ac2f40ba1.png',
+  '/sconce/images/icon-180.678f79f1f40ac2f40ba1.png',
   
-  'images/icon-192.c30f2a2017130f98365a.png',
+  '/sconce/images/icon-192.c30f2a2017130f98365a.png',
   
-  'images/icon-512.7bc7986d2ed3d788782a.png',
+  '/sconce/images/icon-512.7bc7986d2ed3d788782a.png',
   
-  'pwa.ba451b196f9dce938197.js',
+  '/sconce/pwa.a7873eb3a74ac0577291.js',
   
-  'manifest.webmanifest',
+  '/sconce/manifest.webmanifest',
   
-  'index.html',
+  '/sconce/index.html',
   
-  '/',
+  '/sconce/',
   
 ];
 
