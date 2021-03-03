@@ -4,7 +4,7 @@
     "clean-webpack-plugin": "^1.0.0",
     "gh-pwa": "github:firien/gh-pwa",
     "jstransformer-markdown-it": "^2.1.0",
-    "pug": "^2.0.3",
+    "pug": "^3.0.1",
     "upng-js": "^2.1.0",
     "webpack": "^4.28.4",
     "webpack-cli": "^3.3.11",
