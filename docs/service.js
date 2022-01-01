@@ -1,4 +1,4 @@
-const tag = '1';
+const tag = '14';
 const prefix = 'SCONCE';
 const cacheName = `${prefix}-${tag}`;
 
@@ -23,7 +23,7 @@ self.addEventListener('install', async (event) => {
 const clearPreviousCaches = async () => {
   let keys = await caches.keys()
   keys = keys.filter((key) => {
-    return (key != cacheName) && key.startsWith($prefix)
+    return (key != cacheName) && key.startsWith(prefix)
   })
   for (let key of keys) {
    await caches.delete(key);
