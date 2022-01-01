@@ -1,13 +1,15 @@
 {
   "private": true,
   "devDependencies": {
-    "clean-webpack-plugin": "^1.0.0",
-    "gh-pwa": "github:firien/gh-pwa",
+    "esbuild": "^0.14.5",
     "jstransformer-markdown-it": "^2.1.0",
-    "pug": "^2.0.3",
-    "upng-js": "^2.1.0",
-    "webpack": "^4.28.4",
-    "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.11.0"
+    "pug": "^3.0.2"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "./build.js"
+  },
+  "dependencies": {
+    "esbuild-plugin-ghpages-pwa": "github:firien/esbuild-plugin-ghpages-pwa"
   }
 }

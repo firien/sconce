@@ -1,3 +1,17 @@
+:root {
+  --bg-color-secondary: hsl(60, 100%, 97%);
+  --bg-color-primary: white;
+  --text-color: black;
+  --link-color: hsl(240, 100%, 47%);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color-secondary: hsl(240, 100%, 13%);
+    --bg-color-primary: black;
+    --text-color: white;
+    --link-color: hsl(240, 100%, 77%);
+  }
+}
 body {
   font-family: -apple-system, Helvetica;
   margin: 0;
@@ -12,6 +26,9 @@ noscript p {
   border: thin goldenrod solid;
   padding: 0.5em 0;
 }
+a {
+  color: var(--link-color);
+}
 .flex {
   display: flex;
 }
@@ -20,9 +37,13 @@ noscript p {
   flex: 1 0 50%;
   box-sizing: border-box;
   min-height: 100vh;
+  color: var(--text-color);
+}
+.flex > div:first-child {
+  background-color: var(--bg-color-primary);
 }
 .flex > div:last-child {
-  background-color: #fffff0;
+  background-color: var(--bg-color-secondary);
   border-left: thin solid #ccccc0
 }
 .drop-active {
@@ -65,14 +86,14 @@ noscript p {
   -webkit-appearance: none;
   border-radius: 0.2em;
   border: thin solid #555;
-  color: #333;
-  background-color: ivory;
+  color: var(--text-color);
+  background-color: var(--bg-color-secondary);
   font-size: 1rem;
   cursor: pointer;
 }
 #generate:hover {
   background-color: #333;
-  color: ivory;
+  /* color: var(--text-color); */
 }
 #generate:disabled {
   background-color: #777;
@@ -87,27 +108,10 @@ noscript p {
     min-height: unset;
   }
   .flex > div:last-child {
+    flex: 0 0 100%;
+  }
+  .flex > div:last-child {
     border-top: thin solid #ccccc0;
     border-left: none;
   }
-}
-
-button#installer {
-  background: url(../images/icon-180.678f79f1f40ac2f40ba1.png) left no-repeat;
-  font-family: -apple-system, Helvetica;
-  position: absolute;
-  background-color: navy;
-  top: 0;
-  right: 0;
-  margin: 1em;
-  border: thin solid white;
-  border-radius: 0.2em;
-  color: #fffff0;
-  font-size: 1.5em;
-  line-height: 1.5em;
-  height: 2em;
-  background-size: 2em 2em;
-  padding-left: 2.5em;
-  padding-right: 0.5em;
-  cursor: pointer;
 }

@@ -1,44 +1,29 @@
-const tag = '12';
-const $prefix = 'SCONCE';
-const $cacheName = `${$prefix}-${tag}`;
+const tag = '1';
+const prefix = 'SCONCE';
+const cacheName = `${prefix}-${tag}`;
 
-const $urls = [
-  
-  '/sconce/bundle.bfacffd8529898c89cff.js',
-  
-  '/sconce/javascripts/sconce.efbb980e2fa3900f422a.js',
-  
-  '/sconce/stylesheets/index.fb0cad18a722a1b252b5.css',
-  
-  '/sconce/images/icon-152.16a460569578cca83edb.png',
-  
-  '/sconce/images/icon-167.e8c0e1abca38bc2ee6c6.png',
-  
-  '/sconce/images/icon-180.678f79f1f40ac2f40ba1.png',
-  
-  '/sconce/images/icon-192.c30f2a2017130f98365a.png',
-  
-  '/sconce/images/icon-512.7bc7986d2ed3d788782a.png',
-  
-  '/sconce/pwa.a7873eb3a74ac0577291.js',
-  
-  '/sconce/manifest.webmanifest',
-  
-  '/sconce/index.html',
-  
-  '/sconce/',
-  
+const urls = [
+  "/sconce/javascripts/sconce-DEBGUWG5.js.map",
+  "/sconce/javascripts/sconce-DEBGUWG5.js",
+  "/sconce/stylesheets/index-WJYZCOO7.css.map",
+  "/sconce/stylesheets/index-WJYZCOO7.css",
+  "/sconce/images/icon-152-RSA4C27D.png",
+  "/sconce/images/icon-167-J3OTMXMN.png",
+  "/sconce/images/icon-180-EISXTVDE.png",
+  "/sconce/images/icon-192-QIZSH6VW.png",
+  "/sconce/images/icon-512-L6ILOTZJ.png"
 ];
 
 self.addEventListener('install', async (event) => {
-  let cache = await event.waitUntil(caches.open($cacheName));
-  await cache.addAll($urls);
+  event.waitUntil(caches.open(cacheName).then((cache) => {
+    return cache.addAll(urls);
+  }))
 })
 
 const clearPreviousCaches = async () => {
   let keys = await caches.keys()
   keys = keys.filter((key) => {
-    return (key != $cacheName) && key.startsWith($prefix)
+    return (key != cacheName) && key.startsWith($prefix)
   })
   for (let key of keys) {
    await caches.delete(key);
@@ -51,7 +36,7 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   event.respondWith(
-    caches.open($cacheName).then((cache) => {
+    caches.open(cacheName).then((cache) => {
       return cache.match(event.request, {ignoreSearch: true})
     }).then((response) => {
       return response || fetch(event.request)

@@ -1,34 +1,40 @@
+import pngDimensions from './png.js';
+import pwa from 'esbuild-plugin-ghpages-pwa/src/pwa.js';
+
 let $images = [];
 let $icondirentryBytes = 16;
 
-const dropHandler = function(e, img, size) {
-  var file, fileReader, ref;
-  if (((ref = e.dataTransfer.files) != null ? ref.length : void 0) === 1) {
-    file = e.dataTransfer.files[0];
-    e.stopPropagation();
-    e.preventDefault();
-    fileReader = new FileReader();
-    fileReader.onloadend = function(e) {
-      var buffer, err, index, png;
-      buffer = e.target.result;
-      try {
-        png = UPNG.decode(buffer);
-        if ((size === png.width) && (size === png.height)) {
+pwa('sconce');
+
+const readFile = (file) => {
+  return new Promise((resolve, rejected) => {
+    let fileReader = new FileReader();
+    fileReader.onloadend = resolve;
+    fileReader.readAsArrayBuffer(file);
+  })
+}
+const dropHandler = async function(e, img, size) {
+  e.stopPropagation();
+  e.preventDefault();
+  for (let file of e.dataTransfer.files) {
+    let { target } = await readFile(file)
+    let buffer = target.result;
+    let png = pngDimensions(buffer);
+    if (png.width === png.height) {
+      if ($images.findIndex(i => i[0].width == png.width) < 0) {
+        //find element
+        let img = document.querySelector(`img[data-size='${png.width}']`)
+        if (img) {
           img.src = URL.createObjectURL(file);
-          index = $images.push([png, buffer]);
+          let index = $images.push([png, buffer]);
           img.setAttribute('data-index', index - 1);
           enableGenerateButton();
-        } else {
-          alert('Image does not match size');
+          img.classList.remove('drop-active'); //prevent odd returns in try block
         }
-      } catch (error) {
-        err = error;
-        alert(err);
-      } finally {
-        img.classList.remove('drop-active'); //prevent odd returns in try block
       }
-    };
-    return fileReader.readAsArrayBuffer(file);
+    } else {
+      alert('Image does not match size');
+    }
   }
 };
 

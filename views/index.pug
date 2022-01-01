@@ -3,16 +3,14 @@ html(lang="en")
   head
     title=name()
     meta(charset="UTF-8")
-    meta(name="Description" content=desc())
+    meta(name="description" content=desc())
     meta(name="theme-color" content=themeColor())
     meta(name="apple-mobile-web-app-capable" content="yes")
     meta(name="viewport" content="width=device-width, initial-scale=1")
     // scripts
-    script&attributes(scriptAttributes('bundle.js'))
-    script&attributes(scriptAttributes('pwa.js'))
     script&attributes(scriptAttributes('sconce.js'))
     // css
-    link(rel='stylesheet' href=assetPath('index.css'))
+    link(rel='stylesheet' href=webAssetPath('index.css'))
     // icons
     link(rel="icon" href="favicon.ico?sconce" type="image/x-icon")
     each icon in iconLinks()
