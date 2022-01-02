@@ -2,14 +2,12 @@
   "private": true,
   "devDependencies": {
     "esbuild": "^0.14.5",
+    "esbuild-plugin-ghpages-pwa": "github:firien/esbuild-plugin-ghpages-pwa",
     "jstransformer-markdown-it": "^2.1.0",
     "pug": "^3.0.2"
   },
   "type": "module",
   "scripts": {
     "build": "./build.js"
-  },
-  "dependencies": {
-    "esbuild-plugin-ghpages-pwa": "github:firien/esbuild-plugin-ghpages-pwa"
   }
 }

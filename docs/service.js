@@ -1,4 +1,4 @@
-const tag = '14';
+const tag = '15';
 const prefix = 'SCONCE';
 const cacheName = `${prefix}-${tag}`;
 
@@ -11,7 +11,9 @@ const urls = [
   "/sconce/images/icon-167-J3OTMXMN.png",
   "/sconce/images/icon-180-EISXTVDE.png",
   "/sconce/images/icon-192-QIZSH6VW.png",
-  "/sconce/images/icon-512-L6ILOTZJ.png"
+  "/sconce/images/icon-512-L6ILOTZJ.png",
+  "/sconce/index.html",
+  "/sconce/"
 ];
 
 self.addEventListener('install', async (event) => {
