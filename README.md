@@ -1,3 +1,5 @@
+![ci test](https://github.com/firien/sconce/actions/workflows/node.js.yml/badge.svg?event=push)
+
 # Sconce
 
 Create .ico files from PNG.
