@@ -1,4 +1,5 @@
-![ci test](https://github.com/firien/sconce/actions/workflows/node.js.yml/badge.svg?event=push)
+![node test](https://github.com/firien/sconce/actions/workflows/node.js.yml/badge.svg?event=push)
+![browser test](https://github.com/firien/sconce/actions/workflows/playwright.yml/badge.svg?event=push)
 
 # Sconce
 

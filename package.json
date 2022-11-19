@@ -1,6 +1,7 @@
 {
   "private": true,
   "devDependencies": {
+    "@playwright/test": "^1.28.0",
     "esbuild": "^0.14.5",
     "esbuild-plugin-ghpages-pwa": "github:firien/esbuild-plugin-ghpages-pwa",
     "jstransformer-markdown-it": "^2.1.0",
@@ -8,6 +9,6 @@
   },
   "type": "module",
   "scripts": {
-    "build": "./build.js"
+    "build": "node ./build.js"
   }
 }
