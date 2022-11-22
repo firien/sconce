@@ -4,7 +4,9 @@ import pwa from 'esbuild-plugin-ghpages-pwa/src/pwa.js';
 let $images = [];
 let $icondirentryBytes = 16;
 
-pwa('sconce');
+if (window.location.protocol === 'https:') {
+  pwa('sconce');
+}
 
 const readFile = (file) => {
   return new Promise((resolve, rejected) => {
@@ -13,7 +15,7 @@ const readFile = (file) => {
     fileReader.readAsArrayBuffer(file);
   })
 }
-const dropHandler = async function(e, img, size) {
+const dropHandler = async function(e) {
   e.stopPropagation();
   e.preventDefault();
   for (let file of e.dataTransfer.files) {
@@ -97,19 +99,20 @@ const enableGenerateButton = function() {
 
 document.addEventListener('DOMContentLoaded', function() {
   for (let img of document.querySelectorAll('figure img[data-size]')) {
-    // read in size on page load, so DOM modification does not effect code
-    let size = Number(img.getAttribute('data-size'));
-    img.addEventListener('drop', function(e) {
-      return dropHandler(e, img, size);
-    });
+    img.addEventListener('drop', dropHandler);
     img.addEventListener('dragleave', function(e) {
-      return this.classList.remove('drop-active');
+      this.classList.remove('drop-active');
     });
     img.addEventListener('dragover', function(e) {
       e.dataTransfer.dropEffect = 'copy';
       this.classList.add('drop-active');
-      return e.preventDefault();
+      e.preventDefault();
     });
   }
-  return document.querySelector('#generate').addEventListener('click', generateIco);
+  window.addEventListener('drop', dropHandler);
+  window.addEventListener('dragover', function(e) {
+    e.dataTransfer.dropEffect = 'copy';
+    e.preventDefault();
+  });
+document.querySelector('#generate').addEventListener('click', generateIco);
 });

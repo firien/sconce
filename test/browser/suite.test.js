@@ -25,7 +25,7 @@ const dropFiles = async (page, selector, ...files) => {
 
 test('drop png', async ({ page }) => {
   await page.goto(`http://localhost:${testConfig.webServer.port}/sconce/`)
-  await page.waitForNavigation() // service worker reload
   await dropFiles(page, '#thirty-two', './images/icon-32.png')
   await expect(page.locator('img#thirty-two[src]')).toHaveAttribute('src', /^blob:/)
+  page.on('download', download => console.log(download))
 })
