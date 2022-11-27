@@ -1,12 +1,7 @@
 import pngDimensions from './png.js';
-import pwa from 'esbuild-plugin-ghpages-pwa/src/pwa.js';
 
 let $images = [];
 let $icondirentryBytes = 16;
-
-if (window.location.protocol === 'https:') {
-  pwa('sconce');
-}
 
 const readFile = (file) => {
   return new Promise((resolve, rejected) => {
