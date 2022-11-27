@@ -3,8 +3,8 @@ const prefix = 'SCONCE';
 const cacheName = `${prefix}-${tag}`;
 
 const urls = [
-  "/sconce/javascripts/sconce-DEBGUWG5.js.map",
-  "/sconce/javascripts/sconce-DEBGUWG5.js",
+  "/sconce/javascripts/sconce-PFMOB3JU.js.map",
+  "/sconce/javascripts/sconce-PFMOB3JU.js",
   "/sconce/stylesheets/index-WJYZCOO7.css.map",
   "/sconce/stylesheets/index-WJYZCOO7.css",
   "/sconce/images/icon-152-RSA4C27D.png",

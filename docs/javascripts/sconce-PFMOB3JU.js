@@ -1,22 +1,9 @@
 (() => {
-  // javascripts/png.js
-  var png_default = (buffer) => {
-    let dv = new DataView(buffer, 0, 64);
-    if (dv.getUint32(0) === 2303741511 && dv.getUint32(4) === 218765834) {
-      return {
-        width: dv.getUint32(16),
-        height: dv.getUint32(20),
-        depth: dv.getUint8(24)
-      };
-    } else {
-      throw "invalid PNG file";
-    }
-  };
-
   // node_modules/esbuild-plugin-ghpages-pwa/src/pwa.js
-  var pwa_default = (dir) => {
+  var pwa = () => {
     if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register(`/${dir}/service.js`, { scope: `/${dir}/` }).then((registration) => {
+      let scope = window.location.pathname;
+      navigator.serviceWorker.register(`${scope}service.js`, { scope }).then((registration) => {
         const refreshPage = (worker) => {
           if (worker.state != "activated") {
             worker.postMessage({ action: "skipWaiting" });
@@ -37,11 +24,25 @@
       });
     }
   };
+  pwa();
+
+  // javascripts/png.js
+  var png_default = (buffer) => {
+    let dv = new DataView(buffer, 0, 64);
+    if (dv.getUint32(0) === 2303741511 && dv.getUint32(4) === 218765834) {
+      return {
+        width: dv.getUint32(16),
+        height: dv.getUint32(20),
+        depth: dv.getUint8(24)
+      };
+    } else {
+      throw "invalid PNG file";
+    }
+  };
 
   // javascripts/sconce.js
   var $images = [];
   var $icondirentryBytes = 16;
-  pwa_default("sconce");
   var readFile = (file) => {
     return new Promise((resolve, rejected) => {
       let fileReader = new FileReader();
@@ -49,7 +50,7 @@
       fileReader.readAsArrayBuffer(file);
     });
   };
-  var dropHandler = async function(e, img, size) {
+  var dropHandler = async function(e) {
     e.stopPropagation();
     e.preventDefault();
     for (let file of e.dataTransfer.files) {
@@ -58,13 +59,13 @@
       let png = png_default(buffer);
       if (png.width === png.height) {
         if ($images.findIndex((i) => i[0].width == png.width) < 0) {
-          let img2 = document.querySelector(`img[data-size='${png.width}']`);
-          if (img2) {
-            img2.src = URL.createObjectURL(file);
+          let img = document.querySelector(`img[data-size='${png.width}']`);
+          if (img) {
+            img.src = URL.createObjectURL(file);
             let index = $images.push([png, buffer]);
-            img2.setAttribute("data-index", index - 1);
+            img.setAttribute("data-index", index - 1);
             enableGenerateButton();
-            img2.classList.remove("drop-active");
+            img.classList.remove("drop-active");
           }
         }
       } else {
@@ -121,20 +122,22 @@
   };
   document.addEventListener("DOMContentLoaded", function() {
     for (let img of document.querySelectorAll("figure img[data-size]")) {
-      let size = Number(img.getAttribute("data-size"));
-      img.addEventListener("drop", function(e) {
-        return dropHandler(e, img, size);
-      });
+      img.addEventListener("drop", dropHandler);
       img.addEventListener("dragleave", function(e) {
-        return this.classList.remove("drop-active");
+        this.classList.remove("drop-active");
       });
       img.addEventListener("dragover", function(e) {
         e.dataTransfer.dropEffect = "copy";
         this.classList.add("drop-active");
-        return e.preventDefault();
+        e.preventDefault();
       });
     }
-    return document.querySelector("#generate").addEventListener("click", generateIco);
+    window.addEventListener("drop", dropHandler);
+    window.addEventListener("dragover", function(e) {
+      e.dataTransfer.dropEffect = "copy";
+      e.preventDefault();
+    });
+    document.querySelector("#generate").addEventListener("click", generateIco);
   });
 })();
-//# sourceMappingURL=sconce-DEBGUWG5.js.map
+//# sourceMappingURL=sconce-PFMOB3JU.js.map
