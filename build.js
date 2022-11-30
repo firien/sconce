@@ -3,8 +3,9 @@ import ghPages from 'esbuild-plugin-ghpages-pwa';
 
 let { plugin: githubPages, buildOptions } = ghPages({
   app: 'sconce',
+  name: 'sconce',
   description: 'ICO Generator',
-  cacheTag: 15,
+  cacheTag: 16,
   serve: 3013
 })
 
